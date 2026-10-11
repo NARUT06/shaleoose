@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHALIMOOO — شاليمووو | Juice Bar</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--green:#0b3d2e;--green2:#14543f;--cream:#f6f1e7;--gold:#c69a5b;--ink:#1a2421;--muted:#6b7a75;--white:#fff;--radius:20px}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--white);color:var(--ink);line-height:1.7}
+.topbar{background:var(--green);color:#fff;text-align:center;font-size:13px;padding:9px 12px}
+.topbar b{color:#f2d8a7}
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between;padding:14px 5%}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:42px;height:42px;background:var(--green);color:#fff;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:22px}
+.brand-name{line-height:1.1}.brand-name strong{font-size:19px;display:block;letter-spacing:.5px}.brand-name span{font-size:12px;color:var(--muted);letter-spacing:3px}
+nav{display:flex;gap:26px}nav a{text-decoration:none;color:var(--ink);font-size:15px;font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;border:none;padding:12px 26px;border-radius:100px;font-weight:700;font-size:15px;cursor:pointer;transition:.2s;text-decoration:none}
+.btn:hover{background:var(--green2);transform:translateY(-1px)}
+.btn.light{background:#fff;color:var(--green);border:1px solid #ddd}
+.wrap{max-width:1180px;margin:auto;padding:0 5%}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:56px 5% 30px;max-width:1180px;margin:auto}
+.eyebrow{color:var(--gold);font-weight:800;letter-spacing:2px;font-size:13px}
+.hero h1{font-size:52px;line-height:1.25;font-weight:800;margin:12px 0 14px}
+.hero h1 i{color:var(--green);font-style:normal}
+.hero p{color:var(--muted);font-size:17px;max-width:480px}
+.hero-cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero-meta{display:flex;gap:28px;margin-top:28px;border-top:1px solid #eee;padding-top:18px}
+.hero-meta div strong{font-size:22px;display:block}.hero-meta div span{font-size:13px;color:var(--muted)}
+/* ===== CINEMATIC STUDIO ===== */
+.visual{border-radius:32px;padding:22px;position:relative;overflow:hidden;min-height:600px;display:flex;flex-direction:column;background:#efe7d3;animation:bgFade 1.4s ease both}
+.visual::before{content:'';position:absolute;inset:0;background:radial-gradient(700px 380px at 50% 0%,rgba(255,255,255,.95),transparent 65%),radial-gradient(500px 500px at 85% 90%,rgba(198,154,91,.22),transparent 60%),radial-gradient(500px 500px at 10% 90%,rgba(11,61,46,.12),transparent 60%),linear-gradient(180deg,#fbf7ec,#efe4cd 70%,#e7d8bc);animation:lightSweep 2.2s ease both}
+.visual::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(90,60,20,.18);pointer-events:none}
+.visual-top{display:flex;justify-content:space-between;align-items:center;z-index:2;position:relative}
+.tag{background:rgba(255,255,255,.9);border-radius:100px;padding:8px 16px;font-size:13px;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,.08);backdrop-filter:blur(6px)}
+@keyframes bgFade{from{opacity:0;filter:brightness(1.25)}to{opacity:1;filter:brightness(1)}}
+@keyframes lightSweep{from{opacity:0;transform:scale(1.06)}to{opacity:1;transform:scale(1)}}
+.cine-stage{display:flex;justify-content:center;gap:14px;margin:6px 0 10px;position:relative;z-index:2;padding:52px 6px 4px;flex:1;align-items:flex-end;transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.visual.touring .cine-stage{animation:camPan 7.2s ease-in-out infinite}
+@keyframes camPan{0%,100%{transform:translateX(0)}25%{transform:translateX(10px)}50%{transform:translateX(0)}75%{transform:translateX(-10px)}}
+/* bendy corrugated straws like reference */
+.straw{position:absolute;bottom:14px;top:-96px;right:50%;width:78px;z-index:6;pointer-events:none;opacity:0;translate:0 -72px;transition:opacity .5s ease,translate .6s ease;filter:drop-shadow(0 5px 7px rgba(0,0,0,.25))}
+.cine-item.straw-in .straw{opacity:1;translate:0 0}
+.cine-item:nth-child(1) .straw{transform:translateX(50%) rotate(9deg)}
+.cine-item:nth-child(2) .straw{transform:translateX(50%) rotate(-8deg)}
+.cine-item:nth-child(3) .straw{transform:translateX(50%) rotate(11deg)}
+.cine-item.straw-in .straw-inner{animation:strawIdle 4.2s ease-in-out infinite;transform-origin:50% 88%}
+.cine-item:nth-child(2).straw-in .straw-inner{animation-delay:.8s;animation-duration:4.7s}
+.cine-item:nth-child(3).straw-in .straw-inner{animation-delay:1.5s}
+@keyframes strawIdle{0%,100%{rotate:-1.6deg;margin-right:-2px}50%{rotate:1.8deg;margin-right:2px}}
+@keyframes strawDrop{0%{translate:0 -72px;opacity:0;rotate:-7deg}55%{translate:0 6px;opacity:1;rotate:3deg}72%{translate:0 -3px;rotate:-2deg}100%{translate:0 0;opacity:1;rotate:0deg}}
+.straw.dropping{animation:strawDrop .85s cubic-bezier(.2,.9,.3,1.15) both}
+.straw svg{width:58px;height:168px;margin:0 auto;display:block;overflow:visible}
+.fruit{display:none}
+.f-kiwi{display:flex}.f-kiwi i{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 50% 50%,#f4ffd6 0 18%,#b9d94a 19% 42%,#3d8a2a 43% 62%,#2a6b1d 63%);border:2px solid #245c18;display:block;box-shadow:inset 0 0 0 2px rgba(255,255,255,.4)}
+.f-kiwi i:last-child{margin-right:-12px;transform:scale(1.15) rotate(-10deg)}
+.f-strawb{width:44px;height:48px;background:radial-gradient(circle at 30% 30%,#ff8b99,#d21f36 55%,#8a1024);border-radius:50% 50% 50% 50%/45% 45% 60% 60%;border:2px solid #7d0f22;position:relative}
+.f-strawb::before{content:'';position:absolute;top:-8px;right:8px;width:28px;height:14px;background:#2f8a2e;clip-path:polygon(50% 100%,0 0,25% 0,50% 30%,75% 0,100% 0);border-radius:4px}
+.f-strawb::after{content:'';position:absolute;inset:8px;background-image:radial-gradient(#ffe6a8 1.3px,transparent 1.6px);background-size:10px 9px;opacity:.9}
+.f-orange{display:flex}.f-orange i{width:40px;height:40px;border-radius:50%;background:conic-gradient(from 0deg,#ff9a00 0 30deg,#ffd98a 30deg 42deg,#ff9a00 42deg 72deg,#ffd98a 72deg 84deg,#ff9a00 84deg 114deg,#ffd98a 114deg 126deg,#ff9a00 126deg 156deg,#ffd98a 156deg 168deg,#ff9a00 168deg 198deg,#ffd98a 198deg 210deg,#ff9a00 210deg 240deg,#ffd98a 240deg 252deg,#ff9a00 252deg 282deg,#ffd98a 282deg 294deg,#ff9a00 294deg 324deg,#ffd98a 324deg 336deg,#ff9a00 336deg 360deg);border:3px solid #fff;box-shadow:0 0 0 2px #e87a00,inset 0 0 0 3px rgba(255,255,255,.6);display:block}
+.f-orange i:last-child{margin-right:-14px;width:30px;height:30px;align-self:end}
+.cine-item{flex:1;max-width:170px;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1),filter .4s ease;cursor:pointer}
+.cine-item.enter{opacity:1;transform:translateY(0)}
+.cine-item.dim{opacity:.55;filter:saturate(.75) brightness(.97)}
+.cine-item.selected{opacity:1;filter:none}
+.glass-btn{background:none;border:none;cursor:pointer;padding:0;display:flex;flex-direction:column;align-items:center}
+.pour-area{height:118px;width:100%;display:flex;justify-content:center;align-items:flex-end;position:relative}
+.stream-cine{width:26px;height:104px;border-radius:14px;position:relative;transform-origin:top center;opacity:0;transform:scaleY(0)}
+.stream-cine.on{opacity:1;transform:scaleY(1);transition:transform .25s ease,opacity .25s}
+.stream-cine.off{opacity:0;transform:scaleY(0);transition:transform .4s ease,opacity .4s}
+.stream-cine::before{content:'';position:absolute;inset:0;border-radius:14px;background:inherit}
+.stream-cine::after{content:'';position:absolute;top:0;bottom:0;right:7px;width:7px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.1))}
+.splash-ring{position:absolute;bottom:26px;left:50%;width:66px;height:20px;transform:translateX(-50%) scale(.3);border-radius:50%;border:3px solid rgba(255,255,255,.85);opacity:0;pointer-events:none;z-index:5}
+.splash-ring.go{animation:ring .7s ease-out}
+@keyframes ring{0%{transform:translateX(-50%) scale(.3);opacity:0}25%{opacity:.95}100%{transform:translateX(-50%) scale(1.25);opacity:0}}
+.cine-glass{width:152px;height:228px;position:relative;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;transform-origin:50% 90%}
+.cine-item.selected .cine-glass{transform:scale(1.07) translateY(-4px)}
+.glass-body{position:absolute;inset:0;border-radius:16px 16px 30px 30px;background:linear-gradient(115deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.12) 18%,rgba(255,255,255,.03) 40%,rgba(255,255,255,.1) 75%,rgba(255,255,255,.4) 100%);border:1.5px solid rgba(60,40,20,.28);box-shadow:inset 0 0 0 2.5px rgba(255,255,255,.5),inset 14px 0 22px rgba(255,255,255,.55),inset -10px 0 18px rgba(80,50,20,.12),0 28px 44px rgba(60,40,15,.28);overflow:hidden}
+.glass-rim{position:absolute;top:0;right:0;left:0;height:26px;z-index:6;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.15));border-bottom:1px solid rgba(60,40,20,.25);border-radius:16px 16px 50% 50%/16px 16px 20px 20px}
+.glass-rim::after{content:'';position:absolute;top:5px;right:14px;left:14px;height:12px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(60,30,10,.22),transparent 70%)}
+.juice-level{position:absolute;bottom:12px;right:9px;left:9px;height:14%;border-radius:6px 6px 20px 20px;overflow:hidden;box-shadow:inset 0 10px 18px rgba(255,255,255,.3),inset 0 -8px 12px rgba(0,0,0,.18)}
+.juice-level .tex{position:absolute;inset:0;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");mix-blend-mode:overlay}
+.juice-surface{position:absolute;top:-12px;right:-6%;width:112%;height:26px;border-radius:50%;z-index:2;box-shadow:0 3px 8px rgba(0,0,0,.2)}
+.juice-level .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.22),transparent 18%,rgba(255,255,255,.28) 38%,transparent 60%,rgba(0,0,0,.2))}
+.bubbles{position:absolute;inset:0;overflow:hidden;z-index:3}
+.bubbles i{position:absolute;bottom:8px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.95),rgba(255,255,255,.15));opacity:0;animation:riseB 2.4s ease-in infinite}
+@keyframes riseB{0%{transform:translateY(0) scale(.6);opacity:0}20%{opacity:.9}100%{transform:translateY(-150px) scale(1);opacity:0}}
+.spec{position:absolute;top:34px;bottom:34px;right:13px;width:17px;border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.06));z-index:5;filter:blur(.3px)}
+.spec2{position:absolute;top:44px;bottom:44px;left:11px;width:7px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,.75),transparent);z-index:5}
+.base-glass{position:absolute;bottom:0;right:0;left:0;height:18px;z-index:5;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(170,150,120,.55));border-radius:0 0 28px 28px;border-top:1px solid rgba(255,255,255,.6)}
+.floor-shadow{width:120px;height:18px;margin-top:10px;background:radial-gradient(ellipse at center,rgba(50,30,10,.35),transparent 70%);filter:blur(2px)}
+.cine-label{margin-top:10px;font-weight:800;font-size:14px;background:rgba(255,255,255,.95);padding:7px 20px;border-radius:100px;box-shadow:0 8px 20px rgba(0,0,0,.12);transition:.3s;border:2px solid transparent}
+.cine-item.selected .cine-label{border-color:var(--green);box-shadow:0 8px 24px rgba(11,61,46,.25)}
+.cine-sub{font-size:11px;color:var(--muted);margin-top:2px}
+/* juice palettes photoreal */
+.j-avocado .juice-level{background:linear-gradient(180deg,#e6efb8 0%,#c3d989 22%,#a9c46a 50%,#8aab4e 78%,#6d8c38 100%)}
+.j-avocado .juice-surface{background:radial-gradient(ellipse at 50% 40%,#f0f5cc 0%,#c9de94 45%,#93b45a 80%,#6f8f3c 100%)}
+.j-avocado .stream-cine{background:linear-gradient(90deg,#7a9a44,#cfe39a 35%,#eef4cf 50%,#cfe39a 65%,#7a9a44)}
+.j-strawberry .juice-level{background:linear-gradient(180deg,#ff9dab 0%,#f45268 25%,#d92744 55%,#a8162e 82%,#7d0f22 100%)}
+.j-strawberry .juice-surface{background:radial-gradient(ellipse at 50% 40%,#ffc2cc 0%,#f75f76 45%,#c71e38 78%,#8a1024 100%)}
+.j-strawberry .stream-cine{background:linear-gradient(90deg,#8a1024,#e0445c 35%,#ffc9d2 50%,#e0445c 65%,#8a1024)}
+.j-mango .juice-level{background:linear-gradient(180deg,#ffe27a 0%,#ffbe2e 24%,#ff9a00 52%,#e87a00 80%,#b85a00 100%)}
+.j-mango .juice-surface{background:radial-gradient(ellipse at 50% 40%,#fff0a8 0%,#ffcf3d 42%,#ff9a00 75%,#c96a00 100%)}
+.j-mango .stream-cine{background:linear-gradient(90deg,#b85a00,#ff9a00 32%,#fff0a8 50%,#ff9a00 68%,#b85a00)}
+.settle{animation:settle 3s ease-in-out infinite}
+@keyframes settle{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(.3deg)}}
+.cine-item.selected .settle{animation-duration:2.2s}
+.hours-card{background:rgba(255,255,255,.92);border-radius:18px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.strip{background:var(--green);color:#fff;margin:30px 0;padding:14px 0;overflow:hidden;white-space:nowrap}
+.strip span{margin:0 26px;font-weight:700;letter-spacing:1px;font-size:14px}
+.section{padding:36px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px;gap:16px;flex-wrap:wrap}
+.sec-head h2{font-size:34px}.sec-head p{color:var(--muted)}
+.tabs{display:flex;gap:10px;flex-wrap:wrap}
+.tab{border:1px solid #ddd;background:#fff;padding:9px 22px;border-radius:100px;cursor:pointer;font-weight:700;font-size:14px}
+.tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.item{background:#fff;border:1px solid #ececec;border-radius:var(--radius);overflow:hidden;transition:.2s}
+.item:hover{box-shadow:0 18px 40px rgba(0,0,0,.08);transform:translateY(-4px)}
+.item-banner{height:150px;display:flex;align-items:center;justify-content:center}
+.dot{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:900;font-size:28px}
+.item-body{padding:18px}.item-body h3{font-size:18px}.item-body p{font-size:13.5px;color:var(--muted);min-height:44px}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.price{font-weight:800;font-size:19px}.price small{font-weight:400;color:var(--muted);font-size:12px}
+.add-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--green);background:#fff;color:var(--green);font-size:20px;cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card-soft{background:var(--cream);border-radius:28px;padding:36px}
+.card-dark{background:var(--green);color:#fff;border-radius:28px;padding:36px}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rev{border:1px solid #eee;border-radius:20px;padding:22px;background:#fff}.stars{color:var(--gold);letter-spacing:2px}
+footer{background:#0e0e0e;color:#bbb;padding:40px 5%;margin-top:40px}
+.f-grid{max-width:1180px;margin:auto;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:20px}
+.cart-bar{position:fixed;bottom:18px;right:50%;transform:translateX(50%) translateY(140%);background:#111;color:#fff;border-radius:16px;padding:12px 12px 12px 20px;display:flex;gap:18px;align-items:center;z-index:60;transition:.3s;min-width:min(520px,92vw);justify-content:space-between}
+.cart-bar.show{transform:translateX(50%) translateY(0)}
+.drawer{position:fixed;top:0;bottom:0;left:0;width:min(380px,92vw);background:#fff;z-index:70;padding:24px;transform:translateX(-110%);transition:.3s;display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:65;display:none}.overlay.show{display:block}
+.c-line{display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed #eee;padding:10px 0;font-size:14px}
+.qty{display:flex;gap:8px;align-items:center}.qty button{width:28px;height:28px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.hero h1{font-size:34px}nav{display:none}.menu-grid,.reviews,.two,.f-grid{grid-template-columns:1fr}.cine-stage{gap:6px;overflow-x:auto;justify-content:flex-start;padding:52px 8px 4px}.cine-item{min-width:132px}.cine-glass{width:128px;height:196px}.visual{min-height:580px}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="topbar">توصيل مجاني لأول أوردر فوق <b>150 جنيه</b> — كود: <b>AHLAN</b></div>
+<header>
+<div class="brand"><div class="mark">ش</div><div class="brand-name"><strong>SHALIMOOO</strong><span>JUICE BAR</span></div></div>
+<nav><a href="#home">الرئيسية</a><a href="#menu">المنيو</a><a href="#story">قصتنا</a><a href="#reviews">آراء</a><a href="#contact">الفروع</a></nav>
+<button class="btn" onclick="toggleCart(true)">سلة الطلب <span id="h-count">(0)</span></button>
+</header>
+<section id="home" class="hero">
+<div>
+<div class="eyebrow">FRESH — SINCE 2018</div>
+<h1>عصير فريش، <i>بمعايير عالمية</i> وطعم مصري أصيل.</h1>
+<p>اختار كوبايتك — بيتصب فريش قدامك بجودة إعلان سينمائي.</p>
+<div class="hero-cta"><a href="#menu" class="btn">تصفح المنيو</a><button class="btn light" onclick="toggleCart(true)">اطلب تيك أواي</button></div>
+<div class="hero-meta"><div><strong>4.9 / 5</strong><span>تقييم 2,400 عميل</span></div><div><strong>100%</strong><span>فاكهة طبيعية</span></div><div><strong>15 دقيقة</strong><span>متوسط التوصيل</span></div></div>
+</div>
+<div class="visual" id="visual">
+<div class="visual-top"><div class="tag">بدون سكر مضاف</div><div class="tag" id="pour-tag">جاري التجهيز...</div></div>
+<div class="cine-stage" id="stage">
+<div class="cine-item j-avocado" data-juice="avocado"><button class="glass-btn" onclick="selectJuice('avocado',true)" aria-label="أفوكادو"><div class="pour-area"><div class="stream-cine"></div><div class="splash-ring"></div></div><div class="cine-glass"><div class="glass-body"><div class="juice-level"><div class="juice-surface"></div><div class="tex"></div><div class="shade"></div><div class="bubbles"></div></div></div><div class="straw"><div class="straw-inner"><svg viewBox="0 0 60 170"><defs><linearGradient id="bg" x1="0" x2="1"><stop offset="0" stop-color="#145c22"/><stop offset=".35" stop-color="#3fce62"/><stop offset=".55" stop-color="#eaffea"/><stop offset=".7" stop-color="#3fce62"/><stop offset="1" stop-color="#145c22"/></linearGradient></defs><rect x="24" y="86" width="11" height="84" rx="5.5" fill="url(#bg)"/><rect x="27" y="88" width="2.4" height="80" rx="1.2" fill="#fff" opacity=".65"/><path d="M29 86 Q28 62 44 56 Q60 50 56 34" stroke="url(#bg)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M29 86 Q28 62 44 56 Q60 50 56 34" stroke="#0d3f16" stroke-width="11" fill="none" opacity=".38" stroke-dasharray="2.6 3.4" stroke-linecap="butt"/><path d="M56 34 L68 6" stroke="url(#bg)" stroke-width="11" stroke-linecap="round"/><path d="M58.5 32 L68 9" stroke="#fff" stroke-width="2.2" opacity=".7" stroke-linecap="round"/></svg></div></div><div class="glass-rim"></div><div class="spec"></div><div class="spec2"></div><div class="base-glass"></div></div><div class="floor-shadow"></div></button><div class="cine-label">أفوكادو</div><div class="cine-sub">كريمي • عسل</div></div>
+<div class="cine-item j-strawberry" data-juice="strawberry"><button class="glass-btn" onclick="selectJuice('strawberry',true)" aria-label="فراولة"><div class="pour-area"><div class="stream-cine"></div><div class="splash-ring"></div></div><div class="cine-glass"><div class="glass-body"><div class="juice-level"><div class="juice-surface"></div><div class="tex"></div><div class="shade"></div><div class="bubbles"></div></div></div><div class="straw"><div class="straw-inner"><svg viewBox="0 0 60 170"><defs><linearGradient id="br" x1="0" x2="1"><stop offset="0" stop-color="#7d0f22"/><stop offset=".35" stop-color="#f43a52"/><stop offset=".55" stop-color="#ffe3e8"/><stop offset=".7" stop-color="#f43a52"/><stop offset="1" stop-color="#7d0f22"/></linearGradient></defs><rect x="24" y="86" width="11" height="84" rx="5.5" fill="url(#br)"/><rect x="27" y="88" width="2.4" height="80" rx="1.2" fill="#fff" opacity=".65"/><path d="M29 86 Q30 60 14 54 Q2 50 8 32" stroke="url(#br)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M29 86 Q30 60 14 54 Q2 50 8 32" stroke="#5c0a18" stroke-width="11" fill="none" opacity=".38" stroke-dasharray="2.6 3.4" stroke-linecap="butt"/><path d="M8 32 L-2 4" stroke="url(#br)" stroke-width="11" stroke-linecap="round"/><path d="M6 30 L-1 8" stroke="#fff" stroke-width="2.2" opacity=".7" stroke-linecap="round"/></svg></div></div><div class="glass-rim"></div><div class="spec"></div><div class="spec2"></div><div class="base-glass"></div></div><div class="floor-shadow"></div></button><div class="cine-label">فراولة</div><div class="cine-sub">مركزة • فريش</div></div>
+<div class="cine-item j-mango" data-juice="mango"><button class="glass-btn" onclick="selectJuice('mango',true)" aria-label="مانجو"><div class="pour-area"><div class="stream-cine"></div><div class="splash-ring"></div></div><div class="cine-glass"><div class="glass-body"><div class="juice-level"><div class="juice-surface"></div><div class="tex"></div><div class="shade"></div><div class="bubbles"></div></div></div><div class="straw"><div class="straw-inner"><svg viewBox="0 0 60 170"><defs><linearGradient id="bo" x1="0" x2="1"><stop offset="0" stop-color="#8a3c00"/><stop offset=".35" stop-color="#ffa41a"/><stop offset=".55" stop-color="#fff3d0"/><stop offset=".7" stop-color="#ffa41a"/><stop offset="1" stop-color="#8a3c00"/></linearGradient></defs><rect x="24" y="86" width="11" height="84" rx="5.5" fill="url(#bo)"/><rect x="27" y="88" width="2.4" height="80" rx="1.2" fill="#fff" opacity=".7"/><path d="M29 86 Q30 62 46 58 Q62 54 58 36" stroke="url(#bo)" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M29 86 Q30 62 46 58 Q62 54 58 36" stroke="#5e2a00" stroke-width="11" fill="none" opacity=".38" stroke-dasharray="2.6 3.4" stroke-linecap="butt"/><path d="M58 36 L70 8" stroke="url(#bo)" stroke-width="11" stroke-linecap="round"/><path d="M60.5 34 L70 10" stroke="#fff" stroke-width="2.2" opacity=".75" stroke-linecap="round"/></svg></div></div><div class="glass-rim"></div><div class="spec"></div><div class="spec2"></div><div class="base-glass"></div></div><div class="floor-shadow"></div></button><div class="cine-label">مانجو</div><div class="cine-sub">صعيدي • تقيلة</div></div>
+</div>
+<div style="text-align:center;margin-bottom:12px;position:relative;z-index:2"><button class="btn light" onclick="replayPour()">اسكب تاني</button></div>
+<div class="hours-card"><div><strong>مفتوح يومياً 10ص — 2م</strong><div style="font-size:13px;color:#6b7a75">فرع الجامعة • فرع المعادي</div></div><a class="btn" href="#contact">الاتجاهات</a></div>
+</div>
+</section>
+<div class="strip"><span>NO ADDED SUGAR</span>•<span>FRESH DAILY</span>•<span>COLD PRESSED</span>•<span>SHALIMOOO</span></div>
+<section id="menu" class="section wrap">
+<div class="sec-head"><div><h2>المنيو</h2><p>أسعار واضحة — Small / Medium / Large</p></div><div class="tabs" id="tabs"></div></div>
+<div class="menu-grid" id="grid"></div>
+</section>
+<section id="story" class="section wrap">
+<div class="two">
+<div class="card-soft"><div class="eyebrow">WHY SHALIMOOO</div><h2 style="font-size:30px;margin:8px 0">ليه الناس بترجعلنا؟</h2><p style="color:#6b7a75">كل كوباية بتتصب قدامك بماكينات cold-pressed.</p></div>
+<div class="card-dark"><h2 style="font-size:28px">عرض هذا الأسبوع</h2><p>اشترِ Large وخد Medium مجاناً من 2 إلى 5 مساءً.</p><br><button class="btn" style="background:#fff;color:#0b3d2e" onclick="toggleCart(true)">استخدم العرض</button></div>
+</div>
+</section>
+<section id="reviews" class="section wrap">
+<div class="sec-head"><div><h2>قالوا عنا</h2></div></div>
+<div class="reviews"><div class="rev"><div class="stars">★★★★★</div><p>أنضف محل عصير جربته.</p><b>أحمد م.</b></div><div class="rev"><div class="stars">★★★★★</div><p>الأفوكادو مظبوط ومش مسكر.</p><b>سارة خ.</b></div><div class="rev"><div class="stars">★★★★☆</div><p>المكان رايق والاستاف محترم.</p><b>كريم ع.</b></div></div>
+</section>
+<footer><div class="f-grid"><div><h4 style="color:#fff">SHALIMOOO</h4><p style="font-size:14px">براند عصير مصري بجودة عالمية 2026.</p></div><div><h4 style="color:#fff">روابط</h4><p style="font-size:14px">المنيو<br>العروض</p></div><div><h4 style="color:#fff">تواصل</h4><p style="font-size:14px">01001234567</p></div></div></footer>
+<div class="overlay" id="overlay" onclick="toggleCart(false)"></div>
+<aside class="drawer" id="drawer"><h3>سلة الطلب</h3><div id="lines" style="flex:1;overflow:auto;margin:12px 0"></div><div style="border-top:1px solid #eee;padding-top:12px"><div style="display:flex;justify-content:space-between;font-weight:800"><span>الإجمالي</span><span id="total">0 ج</span></div><br><button class="btn" style="width:100%;justify-content:center" onclick="checkout()">تأكيد عبر واتساب</button></div></aside>
+<div class="cart-bar" id="bar"><div><b id="b-count">0 أصناف</b> — <span id="b-total">0 ج</span></div><button class="btn" style="background:#fff;color:#111" onclick="toggleCart(true)">عرض السلة</button></div>
+<script>
+const MENU=[
+{id:1,name:'مانجو صعيدي',desc:'مانجو طبيعية 100%',price:45,cat:'فريش',color:'#d98a1f',init:'M'},
+{id:2,name:'فراولة بالحليب',desc:'فراولة فريش مع حليب',price:42,cat:'فريش',color:'#b8434f',init:'F'},
+{id:4,name:'قصب كلاسيك',desc:'قصب ساقع طازج',price:28,cat:'فريش',color:'#5a8a3a',init:'Q'},
+{id:5,name:'سيجنتشر شاليمووو',desc:'مانجو + فراولة + موز',price:68,cat:'سيجنتشر',color:'#0b3d2e',init:'S'},
+{id:6,name:'أفوكادو بالعسل',desc:'أفوكادو مع حليب وعسل',price:65,cat:'سيجنتشر',color:'#4a6b3a',init:'A'},
+{id:8,name:'ميلك شيك فانيليا',desc:'آيس كريم فانيليا',price:55,cat:'ميلك شيك',color:'#9a7a4a',init:'V'},
+];
+const cats=['الكل','فريش','سيجنتشر','ميلك شيك'];let active='الكل';let cart={};
+function renderTabs(){document.getElementById('tabs').innerHTML=cats.map(c=>'<button class="tab '+(c===active?'active':'')+'" onclick="setCat(\''+c+'\')">'+c+'</button>').join('')}
+function setCat(c){active=c;renderTabs();render()}
+function render(){const g=document.getElementById('grid');const list=MENU.filter(m=>active==='الكل'||m.cat===active);g.innerHTML=list.map(m=>'<div class="item"><div class="item-banner" style="background:#f6f1e7"><div class="dot" style="background:'+m.color+'">'+m.init+'</div></div><div class="item-body"><h3>'+m.name+'</h3><p>'+m.desc+'</p><div class="row"><div class="price">'+m.price+' ج</div><button class="add-btn" onclick="addItem('+m.id+')">+</button></div></div></div>').join('')}
+function addItem(id){cart[id]=(cart[id]||0)+1;update()}
+function change(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];update()}
+function cartTotals(){let n=0,t=0;for(const id in cart){const m=MENU.find(x=>x.id==id);n+=cart[id];t+=cart[id]*m.price}return{n,t}}
+function update(){const r=cartTotals();document.getElementById('h-count').innerText='('+r.n+')';document.getElementById('b-count').innerText=r.n+' أصناف';document.getElementById('b-total').innerText=r.t+' ج';document.getElementById('total').innerText=r.t+' ج';document.getElementById('bar').classList.toggle('show',r.n>0);const box=document.getElementById('lines');if(r.n===0){box.innerHTML='<p style="color:#888">السلة فاضية.</p>';return}box.innerHTML=Object.keys(cart).map(id=>{const m=MENU.find(x=>x.id==id);return '<div class="c-line"><div><b>'+m.name+'</b><br><span>'+m.price+' ج</span></div><div class="qty"><button onclick="change('+id+',-1)">-</button><b>'+cart[id]+'</b><button onclick="change('+id+',1)">+</button></div></div>'}).join('')}
+function toggleCart(o){document.getElementById('drawer').classList.toggle('open',o);document.getElementById('overlay').classList.toggle('show',o)}
+function checkout(){const r=cartTotals();if(r.n===0){alert('السلة فاضية');return}window.open('https://wa.me/201001234567?text='+encodeURIComponent('أوردر شاليمووو: '+r.n+' صنف - '+r.t+' ج'),'_blank')}
+/* ===== CINEMATIC ENGINE ===== */
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let selectedJuice='mango';
+function ease(t){return 1-Math.pow(1-t,3)}
+function setLevel(el,pct){el.style.height=pct+'%'}
+function spawnBubbles(item){const box=item.querySelector('.bubbles');box.innerHTML='';for(let i=0;i<10;i++){const b=document.createElement('i');const s=4+Math.random()*8;b.style.width=b.style.height=s+'px';b.style.right=(8+Math.random()*75)+'%';b.style.animationDelay=(Math.random()*1.8)+'s';b.style.animationDuration=(1.6+Math.random()*1.6)+'s';box.appendChild(b)}}
+function dropStraw(item){const straw=item.querySelector('.straw');if(!straw)return;straw.classList.remove('dropping');void straw.offsetWidth;item.classList.add('straw-in');if(reduced)return;straw.classList.add('dropping');setTimeout(()=>straw.classList.remove('dropping'),900)}
+function pourOne(item,dur){
+return new Promise(res=>{
+const stream=item.querySelector('.stream-cine');const level=item.querySelector('.juice-level');const ring=item.querySelector('.splash-ring');const glass=item.querySelector('.cine-glass');
+item.classList.remove('poured','straw-in','pouring');item.classList.add('pouring');setLevel(level,12);spawnBubbles(item);
+document.getElementById('pour-tag').innerText='يُسكب: '+item.querySelector('.cine-label').innerText+'...';
+stream.classList.add('on');stream.classList.remove('off');
+const t0=performance.now();
+function tick(now){const p=Math.min(1,(now-t0)/dur);const e=ease(p);setLevel(level,12+e*62);stream.style.transform='scaleY(1) scaleX('+(1+Math.sin(now/90)*0.06)+')';if(p>=1){finish()}else requestAnimationFrame(tick)}
+function finish(){stream.classList.remove('on');stream.classList.add('off');stream.style.transform='';ring.classList.remove('go');void ring.offsetWidth;ring.classList.add('go');const surf=item.querySelector('.juice-surface');if(!reduced)surf.animate([{transform:'scaleX(1)'},{transform:'scaleX(1.12)'},{transform:'scaleX(1)'}],{duration:600,easing:'ease-out'});glass.classList.add('settle');item.classList.add('poured');item.classList.remove('pouring');dropStraw(item);setTimeout(res,reduced?0:650)}
+if(reduced){setLevel(level,74);stream.classList.remove('on');glass.classList.add('settle');item.classList.add('poured');item.classList.remove('pouring');dropStraw(item);res();return}
+requestAnimationFrame(tick);
+})}
+let tourTimer=null,tourIdx=0;const tourOrder=['avocado','strawberry','mango'];
+function stopTour(){if(tourTimer){clearInterval(tourTimer);tourTimer=null}document.getElementById('visual').classList.remove('touring')}
+function startTour(){stopTour();if(reduced)return;document.getElementById('visual').classList.add('touring');tourIdx=tourOrder.indexOf(selectedJuice);tourTimer=setInterval(()=>{tourIdx=(tourIdx+1)%tourOrder.length;selectedJuice=tourOrder[tourIdx];applySelection();const item=document.querySelector('.cine-item[data-juice="'+selectedJuice+'"]');const surf=item.querySelector('.juice-surface');surf.animate([{transform:'scaleX(1)'},{transform:'scaleX(1.15)'},{transform:'scaleX(1)'}],{duration:600,easing:'ease-out'});document.getElementById('pour-tag').innerText='المميز الآن: '+item.querySelector('.cine-label').innerText},2400)}
+async function playCinematic(){
+stopTour();
+const items=[...document.querySelectorAll('.cine-item')];
+items.forEach(it=>{it.classList.remove('enter','poured','pouring','straw-in');const s=it.querySelector('.straw');if(s)s.classList.remove('dropping');it.querySelector('.cine-glass').classList.remove('settle');setLevel(it.querySelector('.juice-level'),12);it.querySelector('.stream-cine').classList.remove('on','off')});
+await new Promise(r=>setTimeout(r,reduced?50:350));
+for(let i=0;i<items.length;i++){items[i].classList.add('enter');await new Promise(r=>setTimeout(r,reduced?50:380))}
+for(let i=0;i<items.length;i++){selectedJuice=items[i].dataset.juice;applySelection();await pourOne(items[i],reduced?50:1900);await new Promise(r=>setTimeout(r,reduced?0:380))}
+document.getElementById('pour-tag').innerText='اتصب فريش — بنتحرك بينهم';
+applySelection();
+startTour();
+}
+function applySelection(){document.querySelectorAll('.cine-item').forEach(it=>{const id=it.dataset.juice;it.classList.toggle('selected',id===selectedJuice);it.classList.toggle('dim',id!==selectedJuice)})}
+function selectJuice(id,manual){selectedJuice=id;applySelection();const item=document.querySelector('.cine-item[data-juice="'+id+'"]');const surf=item.querySelector('.juice-surface');if(!reduced)surf.animate([{transform:'scaleX(1)'},{transform:'scaleX(1.18)'},{transform:'scaleX(1)'}],{duration:500,easing:'ease-out'});if(manual){stopTour();document.getElementById('pour-tag').innerText='اخترت: '+item.querySelector('.cine-label').innerText;clearTimeout(window._resumeT);window._resumeT=setTimeout(startTour,8000)}}
+function replayPour(){playCinematic()}
+renderTabs();render();update();applySelection();window.addEventListener('load',playCinematic);setTimeout(()=>{if(!document.querySelector('.cine-item.enter'))playCinematic()},600);
+</script>
+</body>
+</html>
